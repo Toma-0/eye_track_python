@@ -9,6 +9,8 @@ def process(frame):
     gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
     faces = setup_import.face_detector(gray)
 
+    face_mark = None
+
     for face in faces:
         face_mark = setup_import.shape_predictor(gray,face)
         face_mark = face_utils.shape_to_np(face_mark)
