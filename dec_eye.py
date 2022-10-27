@@ -5,10 +5,10 @@ from imutils import face_utils
 import face_landmark
 
 def detect_eye(facemark,frame):
-
+    print("detect_eye")
     #距離が長くなる方を検出
     if facemark[37][1] > facemark[38][1]:
-        top_right =facemark[37][1] 
+            top_right =facemark[37][1] 
     else :
         top_right =facemark[38][1] 
 
