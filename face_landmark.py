@@ -14,8 +14,9 @@ def process(frame):
     for face in faces:
         face_mark = setup_import.shape_predictor(gray,face)
         face_mark = face_utils.shape_to_np(face_mark)
-
-    dec_eye.detect_eye(face_mark,frame)
+        
+    if face_mark:
+        dec_eye.detect_eye(face_mark,frame)
         #draw(face_mark,frame)
 
     return frame
