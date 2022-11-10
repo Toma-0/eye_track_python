@@ -21,10 +21,13 @@ try:
     while(True):
         #画面の読み込み
         ret, frame = cap.read()
+        imgBoxHsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+        v = imgBoxHsv.T[2].flatten().mean()
+
 
         # 顔のランドマーク検出(2.の関数呼び出し)
         #dec_face.process(frame)
-        dec_eyeCv2.process(frame)
+        dec_eyeCv2.process(frame,v)
 
         # 結果の表示
         cv2.imshow('face', frame)

@@ -9,12 +9,12 @@ def main():
     #circle(frame)
 
 
-def dec_color(frame):
+def dec_color(frame,v):
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
 
-    
-    lower_color = np.array([0, 0, 5])
-    up_color= np.array([155, 255, 255])
+    num = v/4
+    lower_color = np.array([0, 0, 0])
+    up_color= np.array([255, 255, int(num)])
     
     
     frame_mask = cv2.inRange(hsv,lower_color,up_color)
