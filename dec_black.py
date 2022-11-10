@@ -3,10 +3,10 @@ import numpy as np
 
 def main():
     frame =cv2.imread("temple.PNG")
-    cv2.imwrite("/Users/toma/Desktop/git/jikken_eye_python/tmp.PNG",frame)
-    #dec_color(frame)
+    #cv2.imwrite("/Users/toma/Desktop/git/jikken_eye_python/tmp.PNG",frame)
+    dec_color(frame)
     #template(frame)
-    circle(frame)
+    #circle(frame)
 
 
 def dec_color(frame):
