@@ -13,7 +13,7 @@ def process(frame):
 
     for x, y, w, h in faces:
         face = frame[y:y+h,x:x+w]
-        #face_landmark.main(face)
-        dec_eyeCv2.process(face)
+        face_landmark.main(face)
+        #dec_eyeCv2.process(face)
         
 

@@ -10,13 +10,13 @@ try:
     start_time = time.time()
     frame_cnt = 0
 
-    """
+   
     fps_1 = int(cap.get(cv2.CAP_PROP_FPS))                    # カメラのFPSを取得
     w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))              # カメラの横幅を取得
     h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))             # カメラの縦幅を取得
     fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')        # 動画保存時のfourcc設定（mp4用）
     video = cv2.VideoWriter('video.mp4', fourcc, fps_1, (w, h))
-    """
+    
 
     while(True):
         #画面の読み込み
@@ -28,9 +28,9 @@ try:
 
         # 結果の表示
         cv2.imshow('face', frame)
-        """
+        
         video.write(frame)
-        """
+        
         frame_cnt += 1
 
         # 'q'が入力されるまでループ
