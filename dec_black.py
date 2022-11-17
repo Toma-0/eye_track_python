@@ -1,23 +1,14 @@
 import cv2
 import numpy as np
 
-def main():
-    frame =cv2.imread("temple.PNG")
-    #cv2.imwrite("/Users/toma/Desktop/git/jikken_eye_python/tmp.PNG",frame)
-    dec_color(frame)
-    #template(frame)
-    #circle(frame)
-
-
-def dec_color(frame,v):
-    hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
-
+def dec_color(frame,hsv,v):
     num = v/4
     lower_color = np.array([0, 0, 0])
     up_color= np.array([255, 255, int(num)])
     
     
     frame_mask = cv2.inRange(hsv,lower_color,up_color)
+
 
     contours, _ = cv2.findContours(frame_mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
    
@@ -28,41 +19,16 @@ def dec_color(frame,v):
                  continue
 
             cv2.polylines(frame, contours[i], True, (255, 255, 255), 1)
-            cv2.imwrite("/Users/toma/Desktop/git/jikken_eye_python/photo.jpeg",frame)
-
-def template(frame):
-    temp = cv2.imread("temple.PNG")
-
-    result = cv2.matchTemplate(frame, temp, cv2.TM_CCOEFF_NORMED)
-    ys, xs = np.where(result >= 0.9)
-
-# 描画する。
-    for x, y in zip(xs, ys):
-        cv2.rectangle(
-            frame,
-            (x, y),
-            (x + temp.shape[1], y + temp.shape[0]),
-            color=(0, 255, 0),
-            thickness=2,
-        )
-        cv2.imwrite("/Users/toma/Desktop/git/jikken_eye_python/photo.PNG",frame)
-
-def circle(frame):
-    frame = cv2.medianBlur(frame,5)
+            
+def black(frame):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20,param1=500, param2=55, minRadius=100, maxRadius=0)
+    circles = cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,1,20,param1=50,param2=30,minRadius=0,maxRadius=0)
+    
+    if circles is not None:
+        circles = np.uint16(np.around(circles))
     
 
-    for cx, cy, r in circles.squeeze(axis=0).astype(int):
-       # 円の円周を描画
-        cv2.circle(frame, (cx, cy), r, (0, 255, 0), 6)
-        # 円の中心を描画
-        cv2.circle(frame, (cx, cy), 2, (0, 255, 0), 4)
-        cv2.imwrite("/Users/toma/Desktop/git/jikken_eye_python/photo.PNG",frame)
-   
-if __name__ == "__main__":
-       main()
-
-
-
-
+        for circle in circles[0,:]:
+            cv2.circle(frame, (circle[0], circle[1]), circle[2], (0, 165, 255), 2)
+            cv2.circle(frame, (circle[0], circle[1]), 2, (0, 0, 255), 3)
+            

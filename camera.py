@@ -27,7 +27,7 @@ try:
 
         # 顔のランドマーク検出(2.の関数呼び出し)
         #dec_face.process(frame)
-        dec_eyeCv2.process(frame,v)
+        dec_eyeCv2.process(frame)
 
         # 結果の表示
         cv2.imshow('face', frame)
